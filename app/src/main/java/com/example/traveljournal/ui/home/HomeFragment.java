@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
     private void inbox() {
         trips = new ArrayList<>();
         Trip trip = null;
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 10; i++) {
             trip = new Trip(0, "Trip Name", "Destination", "Price", null);
             trips.add(trip);
         }

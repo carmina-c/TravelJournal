@@ -17,4 +17,13 @@
     <string name="menu_contact">Contact</string>
     <string name="menu_share">Share</string>
     <string name="menu_aboutus">About Us</string>
+    <string name="city_break">City Break</string>
+    <string name="sea_side">Sea Side</string>
+    <string name="mountains">Mountains</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="pick_start_date">Pick start date</string>
+    <string name="pick_end_date">Pick end date</string>
+    <string name="save">Save</string>
+    <string name="_0">0</string>
 </resources>
