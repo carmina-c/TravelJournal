@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraintLayoutTripItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/medium_padding">
+
+    <ImageView
+        android:id="@+id/imageTrip"
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_trip_1" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:rating="3"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        app:layout_constraintEnd_toEndOf="@+id/imageTrip"
+        app:layout_constraintStart_toStartOf="@+id/imageTrip"
+        app:layout_constraintTop_toBottomOf="@+id/imageTrip" />
+
+    <TextView
+        android:id="@+id/textViewDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin"
+        android:text="@string/destination"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageTrip"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTripName" />
+
+    <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ratingBar"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+
+    <TextView
+        android:id="@+id/textViewTripName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trip_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title_font"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageTrip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageTrip"
+        app:layout_constraintTop_toTopOf="@+id/imageTrip" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
