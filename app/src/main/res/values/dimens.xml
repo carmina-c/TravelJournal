@@ -13,4 +13,5 @@
     <dimen name="medium_margin">24dp</dimen>
     <dimen name="big_margin">64dp</dimen>
     <dimen name="header_margin">40dp</dimen>
+    <dimen name="normal_font">16sp</dimen>
 </resources>

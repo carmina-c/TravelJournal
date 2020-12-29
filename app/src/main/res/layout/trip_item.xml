@@ -42,12 +42,12 @@
         android:id="@+id/textViewPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/teal_200"
+        android:alpha=".4"
         android:text="@string/price"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ratingBar"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+        app:layout_constraintEnd_toEndOf="@+id/imageTrip"
+        app:layout_constraintTop_toTopOf="@+id/imageTrip" />
 
     <TextView
         android:id="@+id/textViewTripName"

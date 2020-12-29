@@ -26,4 +26,12 @@
     <string name="pick_end_date">Pick end date</string>
     <string name="save">Save</string>
     <string name="_0">0</string>
+    <string name="about_us_description">Hi, I am Carmina, a developer from Bucharest and I am currently studying Systems Engineering
+                                        at the Faculty of Automatic Control and Computers within the Polytechnic University of Bucharest.\nThis is a project i\'ve been working on for my Android Fundamentals class.\n
+                                        I\'m a tech enthusiast and I try to improve the user experience in this application.\nIt is a work in progress, but feel free to leave me feedback and let me know what you think.
+                                        </string>
+    <string name="contact_title">Get in touch with us!</string>
+    <string name="contact_info">Send us a message on app.developer@gmail.com</string>
+    <string name="share_title">Share with your friends</string>
+    <string name="share_info">"Because i care about you, here\'s a link to a great Travel Journal app!"</string>
 </resources>
