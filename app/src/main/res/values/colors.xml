@@ -8,4 +8,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#808080</color>
+    <color name="blue">#03a9f4</color>
+    <color name="dark_blue">#006a74</color>
+    <color name="light_blue">#b3eefa</color>
+    <color name="orange">#ed1313</color>
+    <color name="dark_orange">#a10000</color>
+    <color name="light_pinkish_orange">#ffc9cc</color>
+    <color name="green_500">#4caf50</color>
+    <color name="green_900">#1b5e20</color>
+    <color name="green_200">#a5d6a7</color>
+    <color name="blue_grey_500">#607d8b</color>
+    <color name="blue_grey_900">#263238</color>
+    <color name="blue_grey_200">#b0bec5</color>
+
+
 </resources>

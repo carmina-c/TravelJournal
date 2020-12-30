@@ -2,12 +2,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewAddTrip"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:alpha="0.3"
     tools:context=".AddTripActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutAddTrip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/medium_margin">
@@ -86,6 +88,7 @@
                 android:id="@+id/radioButtonCityBreak"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="changeBackgroundToCityBreak"
                 android:text="@string/city_break"
                 android:textColor="@color/black" />
 
@@ -93,6 +96,7 @@
                 android:id="@+id/radioButtonSeaSide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="changeBackgroundToSeaSide"
                 android:text="@string/sea_side"
                 android:textColor="@color/black" />
 
@@ -100,6 +104,7 @@
                 android:id="@+id/radioButtonMountains"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="changeBackgroundToMountain"
                 android:text="@string/mountains"
                 android:textColor="@color/black" />
         </RadioGroup>

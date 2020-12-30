@@ -27,8 +27,7 @@
     <string name="save">Save</string>
     <string name="_0">0</string>
     <string name="about_us_description">Hi, I am Carmina, a developer from Bucharest and I am currently studying Systems Engineering
-                                        at the Faculty of Automatic Control and Computers within the Polytechnic University of Bucharest.\nThis is a project i\'ve been working on for my Android Fundamentals class.\n
-                                        I\'m a tech enthusiast and I try to improve the user experience in this application.\nIt is a work in progress, but feel free to leave me feedback and let me know what you think.
+                                        at the Faculty of Automatic Control and Computers within the Polytechnic University of Bucharest.\nThis is a project i\'ve been working on for my Android Fundamentals class.\nI\'m a tech enthusiast and I try to improve the user experience in this application.\nIt is a work in progress, but feel free to leave me feedback and let me know what you think.
                                         </string>
     <string name="contact_title">Get in touch with us!</string>
     <string name="contact_info">Send us a message on app.developer@gmail.com</string>

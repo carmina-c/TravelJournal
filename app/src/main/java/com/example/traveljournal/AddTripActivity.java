@@ -4,11 +4,15 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.Calendar;
 
@@ -17,6 +21,7 @@ public class AddTripActivity extends AppCompatActivity {
     int yearStart, yearEnd, monthStart, monthEnd, dayStart, dayEnd;
     TextView textViewDateStart, textViewDateEnd, textViewPriceValue;
     SeekBar seekBar;
+    ScrollView scrollViewAddTrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,10 @@ public class AddTripActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+
+        scrollViewAddTrip = findViewById(R.id.scrollViewAddTrip);
     }
+
 
     public void openDatePickerStartDate(View view) {
         final Calendar c = Calendar.getInstance();
@@ -83,4 +91,15 @@ public class AddTripActivity extends AppCompatActivity {
     }
 
 
+    public void changeBackgroundToCityBreak(View view) {
+        scrollViewAddTrip.setBackgroundResource(R.drawable.citybreak_1);
+    }
+
+    public void changeBackgroundToSeaSide(View view) {
+        scrollViewAddTrip.setBackgroundResource(R.drawable.seaside_1);
+    }
+
+    public void changeBackgroundToMountain(View view) {
+        scrollViewAddTrip.setBackgroundResource(R.drawable.background_4);
+    }
 }
