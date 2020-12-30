@@ -34,6 +34,7 @@
         android:layout_marginTop="@dimen/extra_small_margin"
         android:text="@string/destination"
         android:textColor="@color/black"
+        android:textSize="@dimen/medium_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageTrip"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripName" />
@@ -42,12 +43,12 @@
         android:id="@+id/textViewPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/teal_200"
-        android:alpha=".4"
+        android:alpha=".6"
+        android:background="@color/white"
         android:text="@string/price"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/imageTrip"
-        app:layout_constraintTop_toTopOf="@+id/imageTrip" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageTrip"
+        app:layout_constraintEnd_toEndOf="@+id/imageTrip" />
 
     <TextView
         android:id="@+id/textViewTripName"
@@ -57,7 +58,6 @@
         android:textColor="@color/black"
         android:textSize="@dimen/title_font"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageTrip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageTrip"
         app:layout_constraintTop_toTopOf="@+id/imageTrip" />

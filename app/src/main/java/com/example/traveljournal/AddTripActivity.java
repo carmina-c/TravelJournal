@@ -92,14 +92,14 @@ public class AddTripActivity extends AppCompatActivity {
 
 
     public void changeBackgroundToCityBreak(View view) {
-        scrollViewAddTrip.setBackgroundResource(R.drawable.citybreak_1);
+        scrollViewAddTrip.setBackgroundResource(R.drawable.citybreak_2);
     }
 
     public void changeBackgroundToSeaSide(View view) {
-        scrollViewAddTrip.setBackgroundResource(R.drawable.seaside_1);
+        scrollViewAddTrip.setBackgroundResource(R.drawable.seaside_2);
     }
 
     public void changeBackgroundToMountain(View view) {
-        scrollViewAddTrip.setBackgroundResource(R.drawable.background_4);
+        scrollViewAddTrip.setBackgroundResource(R.drawable.mountain_2);
     }
 }
