@@ -4,15 +4,11 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.Calendar;
 
@@ -43,6 +39,9 @@ public class AddTripActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+
+        getSupportActionBar().setTitle("Add/Edit Trip");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         scrollViewAddTrip = findViewById(R.id.scrollViewAddTrip);
     }
@@ -92,7 +91,7 @@ public class AddTripActivity extends AppCompatActivity {
 
 
     public void changeBackgroundToCityBreak(View view) {
-        scrollViewAddTrip.setBackgroundResource(R.drawable.citybreak_2);
+        scrollViewAddTrip.setBackgroundResource(R.drawable.citybreak_1);
     }
 
     public void changeBackgroundToSeaSide(View view) {
@@ -100,6 +99,9 @@ public class AddTripActivity extends AppCompatActivity {
     }
 
     public void changeBackgroundToMountain(View view) {
-        scrollViewAddTrip.setBackgroundResource(R.drawable.mountain_2);
+        scrollViewAddTrip.setBackgroundResource(R.drawable.mountain_3);
+    }
+
+    public void saveDataOnClick(View view) {
     }
 }

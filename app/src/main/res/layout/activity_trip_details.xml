@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewTripDetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".TripDetailsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/medium_margin">
+
+        <ImageView
+            android:id="@+id/imageTripDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:contentDescription="@string/image_description"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutHeaderDetails"
+            app:srcCompat="@drawable/image_trip_1" />
+
+        <RatingBar
+            android:id="@+id/ratingBarDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="5"
+            android:scaleX="0.3"
+            android:scaleY="0.3"
+            app:layout_constraintEnd_toEndOf="@+id/imageTripDetails"
+            app:layout_constraintStart_toStartOf="@+id/imageTripDetails"
+            app:layout_constraintTop_toBottomOf="@+id/imageTripDetails" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutHeaderDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:padding="@dimen/medium_padding"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tripNameDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/trip_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_font"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/destinationDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/destination"
+                android:textColor="@color/white"
+                android:textSize="@dimen/medium_font"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tripNameDetails" />
+
+            <TextView
+                android:id="@+id/startDateDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/from"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@+id/lineDateSeparatorDetails"
+                app:layout_constraintTop_toBottomOf="@+id/destinationDetails" />
+
+            <TextView
+                android:id="@+id/lineDateSeparatorDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/line_date_separator"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/destinationDetails"
+                app:layout_constraintStart_toStartOf="@+id/destinationDetails"
+                app:layout_constraintTop_toBottomOf="@+id/destinationDetails" />
+
+            <TextView
+                android:id="@+id/endDateDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/until"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/lineDateSeparatorDetails"
+                app:layout_constraintTop_toBottomOf="@+id/destinationDetails" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

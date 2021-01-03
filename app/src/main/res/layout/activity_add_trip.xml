@@ -47,6 +47,7 @@
             android:layout_marginTop="@dimen/big_margin"
             android:layout_marginEnd="@dimen/small_margin"
             android:background="@color/dark_blue"
+            android:onClick="saveDataOnClick"
             android:text="@string/save"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"

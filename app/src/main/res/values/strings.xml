@@ -33,4 +33,8 @@
     <string name="contact_info">Send us a message on app.developer@gmail.com</string>
     <string name="share_title">Share with your friends</string>
     <string name="share_info">"Because i care about you, here\'s a link to a great Travel Journal app!"</string>
+    <string name="image_description">image_description</string>
+    <string name="from">From</string>
+    <string name="line_date_separator">-</string>
+    <string name="until">Until</string>
 </resources>
