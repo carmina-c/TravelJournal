@@ -37,4 +37,12 @@
     <string name="from">From</string>
     <string name="line_date_separator">-</string>
     <string name="until">Until</string>
+    <string name="empty_not_saved">Empty! Not saved</string>
+    <string name="no_word">No word</string>
+    <string name="add_trip">Add trip</string>
+    <string name="no_trip">No trip</string>
+    <string name="no_destination">No destination</string>
+    <string name="error_getting_weather">ERROR getting weather data</string>
+    <string name="unknown_trip">Unknown trip</string>
+    <string name="unknown_destination">Unknown destination</string>
 </resources>

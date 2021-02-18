@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".AddTripActivity">
+    tools:context=".NewTripActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutAddTrip"
@@ -58,8 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/medium_margin"
-            android:background="@color/white"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:background="#98ffffff"
             android:ems="10"
             android:hint="@string/destination"
             android:inputType="textPersonName"
@@ -74,9 +74,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:layout_marginEnd="@dimen/medium_margin"
-            android:background="@color/white"
+            android:layout_marginTop="@dimen/medium_to_big_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:background="#98ffffff"
             android:ems="10"
             android:hint="@string/trip_name"
             android:inputType="textPersonName"
@@ -89,10 +89,12 @@
 
         <RadioGroup
             android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
             android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:background="#98ffffff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextDestination">
 
@@ -155,7 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            android:background="@color/white"
+            android:background="#98ffffff"
             android:text="@string/start_date"
             android:textColor="@color/black"
             android:textSize="@dimen/normal_font"
@@ -166,7 +168,7 @@
             android:id="@+id/textViewDateEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="#98ffffff"
             android:text="@string/end_date"
             android:textColor="@color/black"
             android:textSize="@dimen/normal_font"
@@ -175,11 +177,12 @@
 
         <TextView
             android:id="@+id/textViewSliderPrice"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/white"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:background="#98ffffff"
             android:text="@string/price"
             android:textColor="@color/black"
             android:textSize="@dimen/normal_font"
@@ -192,12 +195,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
             android:layout_marginTop="@dimen/extra_small_margin"
-            android:background="@color/white"
+            android:background="#98ffffff"
             android:text="@string/_0"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewSliderPrice" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

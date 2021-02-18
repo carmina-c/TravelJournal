@@ -6,6 +6,17 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/medium_padding">
 
+    <ImageButton
+        android:id="@+id/buttonBookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_bookmark_unsaved"
+        app:layout_constraintEnd_toEndOf="@+id/textViewDestination"
+        app:layout_constraintStart_toStartOf="@+id/textViewDestination"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDestination" />
+
     <ImageView
         android:id="@+id/imageTrip"
         android:layout_width="200dp"
@@ -19,6 +30,7 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:isIndicator="true"
         android:numStars="5"
         android:rating="3"
         android:scaleX="0.5"
@@ -26,18 +38,6 @@
         app:layout_constraintEnd_toEndOf="@+id/imageTrip"
         app:layout_constraintStart_toStartOf="@+id/imageTrip"
         app:layout_constraintTop_toBottomOf="@+id/imageTrip" />
-
-    <TextView
-        android:id="@+id/textViewDestination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/extra_small_margin"
-        android:text="@string/destination"
-        android:textColor="@color/black"
-        android:textSize="@dimen/medium_font"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageTrip"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTripName" />
 
     <TextView
         android:id="@+id/textViewPrice"
@@ -63,5 +63,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageTrip"
         app:layout_constraintTop_toTopOf="@+id/imageTrip" />
+
+    <TextView
+        android:id="@+id/textViewDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin"
+        android:text="@string/destination"
+        android:textColor="@color/black"
+        android:textSize="@dimen/medium_font"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageTrip"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTripName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

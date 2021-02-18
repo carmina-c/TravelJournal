@@ -1,6 +1,5 @@
 package com.example.traveljournal.trip_recycler_view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -11,8 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.traveljournal.AddTripActivity;
-import com.example.traveljournal.MainActivity;
+import com.example.traveljournal.NewTripActivity;
 import com.example.traveljournal.R;
 import com.example.traveljournal.TripDetailsActivity;
 
@@ -36,7 +34,7 @@ public class TripViewHolder extends RecyclerView.ViewHolder {
             @Override
             public boolean onLongClick(View itemView) {
                 Toast.makeText(itemView.getContext(), "Position is " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-                Intent activity = new Intent(context, AddTripActivity.class);
+                Intent activity = new Intent(context, NewTripActivity.class);
                 context.startActivity(activity);
                 return false;
             }

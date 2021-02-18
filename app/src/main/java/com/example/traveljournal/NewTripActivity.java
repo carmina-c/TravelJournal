@@ -1,9 +1,13 @@
 package com.example.traveljournal;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -12,24 +16,33 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
-public class AddTripActivity extends AppCompatActivity {
+public class NewTripActivity extends AppCompatActivity {
+
+    public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
+    public static final String EXTRA_REPLY1 = "com.example.android.wordlistsql.REPLY1";
 
     int yearStart, yearEnd, monthStart, monthEnd, dayStart, dayEnd;
     TextView textViewDateStart, textViewDateEnd, textViewPriceValue;
-    SeekBar seekBar;
+    SeekBar seekBarPrice;
+    int price;
     ScrollView scrollViewAddTrip;
+    Button buttonSave;
+
+    private EditText mEditTripNameView;
+    private EditText mEditDestinationNameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_trip);
+        setContentView(R.layout.activity_new_trip);
 
-        seekBar = (SeekBar) findViewById(R.id.seekBarPrice);
+        seekBarPrice = (SeekBar) findViewById(R.id.seekBarPrice);
         textViewPriceValue = findViewById(R.id.textViewPriceValue);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBarPrice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 textViewPriceValue.setText(progress + "/" + seekBar.getMax());
+                price = progress;
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -44,8 +57,33 @@ public class AddTripActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         scrollViewAddTrip = findViewById(R.id.scrollViewAddTrip);
-    }
+        mEditTripNameView = findViewById(R.id.editTextTripName);
+        mEditDestinationNameView = findViewById(R.id.editTextDestination);
 
+        buttonSave = findViewById(R.id.buttonSave);
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent replyIntent = new Intent();
+                if (TextUtils.isEmpty(mEditTripNameView.getText())) {
+                    setResult(RESULT_CANCELED, replyIntent);
+                } else {
+                    String trip = mEditTripNameView.getText().toString();
+                    String destination = mEditDestinationNameView.getText().toString();
+                    replyIntent.putExtra(EXTRA_REPLY, trip);
+                    replyIntent.putExtra(EXTRA_REPLY1, destination);
+                    setResult(RESULT_OK, replyIntent);
+                }
+                finish();
+            }
+        });
+
+        Intent intentReceived = getIntent();
+        Bundle data = intentReceived.getExtras();
+        if(data != null) {
+            mEditTripNameView.setText(data.getString("TripName"));
+            mEditDestinationNameView.setText(data.getString("Destination"));
+        }
+    }
 
     public void openDatePickerStartDate(View view) {
         final Calendar c = Calendar.getInstance();
@@ -102,6 +140,4 @@ public class AddTripActivity extends AppCompatActivity {
         scrollViewAddTrip.setBackgroundResource(R.drawable.mountain_3);
     }
 
-    public void saveDataOnClick(View view) {
-    }
 }
