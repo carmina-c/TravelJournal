@@ -1,14 +1,10 @@
 package com.example.traveljournal.room;
 
 
-import android.widget.RatingBar;
-import android.widget.SeekBar;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
 
 @Entity(tableName = "trip_table")
 public class Trip {
@@ -20,9 +16,17 @@ public class Trip {
     @ColumnInfo(name = "tripDestination")
     private final String mDestination;
 
-    public Trip(@NonNull String mTrip, String mDestination) {
+    @ColumnInfo(name = "tripPrice")
+    private final String mPrice;
+
+    @ColumnInfo(name = "tripRating")
+    private final float mRating;
+
+    public Trip(@NonNull String mTrip, String mDestination, String mPrice, float mRating) {
         this.mTrip = mTrip;
         this.mDestination = mDestination;
+        this.mPrice = mPrice;
+        this.mRating = mRating;
     }
 
     public String getTrip() {
@@ -31,5 +35,13 @@ public class Trip {
 
     public String getDestination() {
         return mDestination;
+    }
+
+    public String getPrice() {
+        return mPrice;
+    }
+
+    public float getRating() {
+        return mRating;
     }
 }

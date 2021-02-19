@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -20,16 +21,20 @@ public class NewTripActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
     public static final String EXTRA_REPLY1 = "com.example.android.wordlistsql.REPLY1";
+    public static final String EXTRA_REPLY2 = "com.example.android.wordlistsql.REPLY2";
+    public static final String EXTRA_REPLY3 = "com.example.android.wordlistsql.REPLY3";
 
     int yearStart, yearEnd, monthStart, monthEnd, dayStart, dayEnd;
-    TextView textViewDateStart, textViewDateEnd, textViewPriceValue;
+    TextView textViewDateStart, textViewDateEnd;
     SeekBar seekBarPrice;
-    int price;
+    private String price;
     ScrollView scrollViewAddTrip;
     Button buttonSave;
 
     private EditText mEditTripNameView;
     private EditText mEditDestinationNameView;
+    private TextView mTextViewPrice;
+    private RatingBar mRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +42,12 @@ public class NewTripActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_trip);
 
         seekBarPrice = (SeekBar) findViewById(R.id.seekBarPrice);
-        textViewPriceValue = findViewById(R.id.textViewPriceValue);
+        mTextViewPrice = findViewById(R.id.textViewPriceValue);
         seekBarPrice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textViewPriceValue.setText(progress + "/" + seekBar.getMax());
-                price = progress;
+                mTextViewPrice.setText(progress + " EUR");
+                price = String.valueOf(progress);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -59,6 +64,7 @@ public class NewTripActivity extends AppCompatActivity {
         scrollViewAddTrip = findViewById(R.id.scrollViewAddTrip);
         mEditTripNameView = findViewById(R.id.editTextTripName);
         mEditDestinationNameView = findViewById(R.id.editTextDestination);
+        mRating = findViewById(R.id.ratingBar);
 
         buttonSave = findViewById(R.id.buttonSave);
         buttonSave.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +75,11 @@ public class NewTripActivity extends AppCompatActivity {
                 } else {
                     String trip = mEditTripNameView.getText().toString();
                     String destination = mEditDestinationNameView.getText().toString();
+                    float rating = mRating.getRating();
                     replyIntent.putExtra(EXTRA_REPLY, trip);
                     replyIntent.putExtra(EXTRA_REPLY1, destination);
+                    replyIntent.putExtra(EXTRA_REPLY2, price);
+                    replyIntent.putExtra(EXTRA_REPLY3, rating);
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();
@@ -82,6 +91,8 @@ public class NewTripActivity extends AppCompatActivity {
         if(data != null) {
             mEditTripNameView.setText(data.getString("TripName"));
             mEditDestinationNameView.setText(data.getString("Destination"));
+            mTextViewPrice.setText(data.getString("Price"));
+            mRating.setRating(data.getFloat("Rating"));
         }
     }
 
@@ -139,5 +150,4 @@ public class NewTripActivity extends AppCompatActivity {
     public void changeBackgroundToMountain(View view) {
         scrollViewAddTrip.setBackgroundResource(R.drawable.mountain_3);
     }
-
 }

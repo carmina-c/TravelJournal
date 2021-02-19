@@ -2,6 +2,7 @@ package com.example.traveljournal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ public class TripDetailsActivity extends AppCompatActivity {
 
     private TextView tripNameDetails;
     private TextView destinationDetails;
+    private RatingBar ratingBarDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +25,17 @@ public class TripDetailsActivity extends AppCompatActivity {
 
         tripNameDetails = findViewById(R.id.tripNameDetails);
         destinationDetails = findViewById(R.id.destinationDetails);
+        ratingBarDetails = findViewById(R.id.ratingBarDetails);
+
+        getSupportActionBar().setTitle("Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intentReceived = getIntent();
         Bundle data = intentReceived.getExtras();
         if(data != null) {
             tripNameDetails.setText(data.getString("TripName"));
             destinationDetails.setText(data.getString("Destination"));
+            ratingBarDetails.setRating(data.getFloat("Rating"));
         }
-        getSupportActionBar().setTitle("Details");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Trip.class}, version = 2, exportSchema = false)
+@Database(entities = {Trip.class}, version = 4, exportSchema = false)
 public abstract class TripRoomDatabase extends RoomDatabase {
     public abstract TripDao tripDao();
 
@@ -34,7 +34,6 @@ public abstract class TripRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
@@ -44,9 +43,9 @@ public abstract class TripRoomDatabase extends RoomDatabase {
                 TripDao dao = INSTANCE.tripDao();
                 dao.deleteAll();
 
-                Trip trip = new Trip("Birthday", "Bahamas");
+                Trip trip = new Trip("Birthday", "Bahamas", "100", 3);
                 dao.insert(trip);
-                trip = new Trip("Halloween Party", "Hawaii");
+                trip = new Trip("Halloween Party", "Hawaii", "100", 3);
                 dao.insert(trip);
             });
         }

@@ -45,4 +45,5 @@
     <string name="error_getting_weather">ERROR getting weather data</string>
     <string name="unknown_trip">Unknown trip</string>
     <string name="unknown_destination">Unknown destination</string>
+    <string name="no_data">\?</string>
 </resources>

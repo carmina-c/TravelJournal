@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,10 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
     class TripViewHolder extends RecyclerView.ViewHolder {
         private final TextView tripItemView;
         private final TextView destinationItemView;
+        private final TextView priceItemView;
         private final ImageButton bookmark;
+        private final RatingBar ratingBar;
+        private float ratingBarValue = 0;
         private int bookmarkState = 0;
 
         private TripViewHolder(View itemView) {
@@ -32,6 +36,8 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
             Context context = itemView.getContext();
             tripItemView = itemView.findViewById(R.id.textViewTripName);
             destinationItemView = itemView.findViewById(R.id.textViewDestination);
+            priceItemView = itemView.findViewById(R.id.textViewPrice);
+            ratingBar = itemView.findViewById(R.id.ratingBar);
             bookmark = itemView.findViewById(R.id.buttonBookmark);
 
             /*itemView.setOnTouchListener(new OnSwipeTouchListener(context) {
@@ -44,11 +50,14 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View itemView) {
-                    Toast.makeText(itemView.getContext(), "Position is " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(itemView.getContext(), "Position is " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
                     Intent activity = new Intent(context, NewTripActivity.class);
                     Bundle dataDetails = new Bundle();
                     dataDetails.putString("TripName", tripItemView.getText().toString());
                     dataDetails.putString("Destination", destinationItemView.getText().toString());
+                    dataDetails.putString("Price", priceItemView.getText().toString());
+                    ratingBarValue = ratingBar.getRating();
+                    dataDetails.putFloat("Rating", ratingBarValue);
                     activity.putExtras(dataDetails);
                     context.startActivity(activity);
                     return false;
@@ -62,6 +71,8 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
                     Bundle dataDetails = new Bundle();
                     dataDetails.putString("TripName", tripItemView.getText().toString());
                     dataDetails.putString("Destination", destinationItemView.getText().toString());
+                    ratingBarValue = ratingBar.getRating();
+                    dataDetails.putFloat("Rating", ratingBarValue);
                     activity.putExtras(dataDetails);
                     context.startActivity(activity);
                 }
@@ -101,10 +112,15 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
             Trip current = mTrips.get(position);
             holder.tripItemView.setText(current.getTrip());
             holder.destinationItemView.setText(current.getDestination());
+            holder.priceItemView.setText(current.getPrice());
+            //holder.priceItemView.setText("500");
+            holder.ratingBar.setRating(current.getRating());
         } else {
             // Covers the case of data not being ready yet.
             holder.tripItemView.setText(R.string.no_trip);
             holder.destinationItemView.setText(R.string.no_destination);
+            holder.priceItemView.setText(R.string.no_data);
+            holder.ratingBar.setRating(0);
         }
     }
 

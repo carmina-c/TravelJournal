@@ -10,12 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traveljournal.NewTripActivity;
 import com.example.traveljournal.R;
-import com.example.traveljournal.TripDetailsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -61,9 +59,10 @@ public class TripsActivity extends AppCompatActivity {
         if (requestCode == NEW_TRIP_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String tripName = data.getStringExtra(NewTripActivity.EXTRA_REPLY);
             String destination = data.getStringExtra(NewTripActivity.EXTRA_REPLY1);
-            Trip trip = new Trip(tripName,destination);
+            String price = data.getStringExtra(NewTripActivity.EXTRA_REPLY2);
+            float rating = data.getFloatExtra(NewTripActivity.EXTRA_REPLY3, 0);
+            Trip trip = new Trip(tripName, destination, price, rating);
             mTripViewModel.insert(trip);
-
         } else {
             Toast.makeText(
                     getApplicationContext(),
