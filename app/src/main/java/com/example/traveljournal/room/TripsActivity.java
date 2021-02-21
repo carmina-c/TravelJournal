@@ -61,7 +61,9 @@ public class TripsActivity extends AppCompatActivity {
             String destination = data.getStringExtra(NewTripActivity.EXTRA_REPLY1);
             String price = data.getStringExtra(NewTripActivity.EXTRA_REPLY2);
             float rating = data.getFloatExtra(NewTripActivity.EXTRA_REPLY3, 0);
-            Trip trip = new Trip(tripName, destination, price, rating);
+            String mStartDate = data.getStringExtra(NewTripActivity.EXTRA_REPLY4);
+            String mEndDate = data.getStringExtra(NewTripActivity.EXTRA_REPLY5);
+            Trip trip = new Trip(tripName, destination, price, rating, mStartDate, mEndDate, false);
             mTripViewModel.insert(trip);
         } else {
             Toast.makeText(

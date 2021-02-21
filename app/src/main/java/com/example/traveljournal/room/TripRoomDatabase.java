@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Trip.class}, version = 4, exportSchema = false)
+@Database(entities = {Trip.class}, version = 5, exportSchema = false)
 public abstract class TripRoomDatabase extends RoomDatabase {
     public abstract TripDao tripDao();
 
@@ -43,9 +43,9 @@ public abstract class TripRoomDatabase extends RoomDatabase {
                 TripDao dao = INSTANCE.tripDao();
                 dao.deleteAll();
 
-                Trip trip = new Trip("Birthday", "Bahamas", "100", 3);
+                Trip trip = new Trip("Birthday", "Bahamas", "100", 3, "25.01.2021", "28.01.2021", true);
                 dao.insert(trip);
-                trip = new Trip("Halloween Party", "Hawaii", "100", 3);
+                trip = new Trip("Halloween Party", "Hawaii", "100", 3, "3.06.2020", "10.06.2020", false);
                 dao.insert(trip);
             });
         }

@@ -1,35 +1,39 @@
 package com.example.traveljournal.retrofit;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traveljournal.R;
-import com.example.traveljournal.store_data.ApplicationData;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.traveljournal.R;
+import com.example.traveljournal.retrofit.POJO.Example;
 
 public class WeatherActivity extends AppCompatActivity {
 
-    private static final String WEATHER_TOKEN = "";
-    private static final String VERSION_API = "VERSION_API";
-
     private WeatherRepository weatherRepository;
-
-    private List<Weather> weatherInfos;
+    private String city;
+    private TextView cityTextView, temperatureTextView, temperatureFeelsLikeTextView, humidityTextView, pressureTexView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
-        weatherRepository = WeatherRepository.getInstance();
-        weatherInfos = new ArrayList<>();
+        cityTextView = findViewById(R.id.txt_city);
+        temperatureTextView = findViewById(R.id.txt_temperature);
+        temperatureFeelsLikeTextView = findViewById(R.id.txt_temperature_feels_like);
+        humidityTextView = findViewById(R.id.txt_humidity);
+        pressureTexView = findViewById(R.id.txt_press);
 
-        ApplicationData.setIntValueInSharedPreferences(WeatherActivity.this, VERSION_API, 1);
-        int savedVersion = ApplicationData.getIntValueFromSharedPreferences(WeatherActivity.this, VERSION_API);
+        Intent intentReceived = getIntent();
+        Bundle data = intentReceived.getExtras();
+        if (data != null) {
+            city = data.getString("City");
+        }
+
+        weatherRepository = WeatherRepository.getInstance();
 
         getDataSource();
     }
@@ -37,13 +41,15 @@ public class WeatherActivity extends AppCompatActivity {
     private void getDataSource() {
         weatherRepository.getWeatherInfos(new OnGetWeatherInfosCallback() {
             @Override
-            public void onSuccess(List<Weather> weatherListFromApi) {
-                weatherInfos = weatherListFromApi;
-                StringBuilder stringBuilder = new StringBuilder();
-                for (Weather weatherInfo : weatherListFromApi) {
-                    stringBuilder.append(weatherInfo.toString() + " /// ");
-                }
-                Toast.makeText(WeatherActivity.this, stringBuilder.toString(), Toast.LENGTH_LONG).show();
+            public void onSuccess(Example weatherInfo) {
+                Toast.makeText(WeatherActivity.this, weatherInfo.getMain().toString(),
+                        Toast.LENGTH_LONG).show();
+                cityTextView.setText(weatherInfo.getName());
+                temperatureTextView.setText("Temperature: " + String.valueOf(weatherInfo.getMain().getTemp()) + "\u2103");
+                temperatureFeelsLikeTextView.setText("Feels like: " + String.valueOf(weatherInfo.getMain().getFeelsLike()) + "\u2103");
+                humidityTextView.setText("Humidity: " + String.valueOf(weatherInfo.getMain().getHumidity()));
+                pressureTexView.setText("Pressure: " + String.valueOf(weatherInfo.getMain().getPressure()));
+
             }
 
             @Override

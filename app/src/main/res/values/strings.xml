@@ -46,4 +46,11 @@
     <string name="unknown_trip">Unknown trip</string>
     <string name="unknown_destination">Unknown destination</string>
     <string name="no_data">\?</string>
+    <string name="check_weather">Check weather</string>
+    <string name="see_trips">See trips</string>
+    <string name="city">City</string>
+    <string name="temperature">Temperature</string>
+    <string name="feels_like">Feels like</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
 </resources>

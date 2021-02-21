@@ -104,5 +104,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/destinationDetails" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/openWeatherActivityButton"
+            android:theme="@style/Theme.TravelJournal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:padding="@dimen/medium_padding"
+            android:background="@color/dark_blue"
+            android:onClick="openWeatherDetailsOnClick"
+            android:text="@string/check_weather"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBarDetails" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

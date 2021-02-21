@@ -44,14 +44,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        openWeatherActivityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), WeatherActivity.class);
-                startActivity(intent);
-            }
-        });
-
         return root;
     }
 }

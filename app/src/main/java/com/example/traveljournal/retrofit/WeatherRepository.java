@@ -1,6 +1,12 @@
 package com.example.traveljournal.retrofit;
 
-import java.util.List;
+import android.util.Log;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
+import com.example.traveljournal.retrofit.POJO.Example;
+import com.example.traveljournal.retrofit.POJO.Weather;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -10,19 +16,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WeatherRepository {
     private static WeatherRepository weatherRepository;
-    private GetData getData;
-    public static String lat = "35";
-    public static String lon = "139";
-    public static String AppId = "635de0ffe609758867df0c2955c0c1e3";
 
-    private WeatherRepository(GetData data){
+    private final GetData getData;
+
+    final static String BASE_URL = "https://api.openweathermap.org/";
+    public static String appID = "635de0ffe609758867df0c2955c0c1e3";
+    private final String city = "London,uk";
+    private final String units = "metric";
+
+    private WeatherRepository(GetData data) {
         this.getData = data;
     }
 
-    public static WeatherRepository getInstance(){
-        if(weatherRepository == null) {
+    public static WeatherRepository getInstance() {
+        if (weatherRepository == null) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://api.openweathermap.org/")
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
@@ -33,13 +42,13 @@ public class WeatherRepository {
     }
 
     public void getWeatherInfos(final OnGetWeatherInfosCallback callback) {
-        getData.getAllWeatherInfos(lat, lon, AppId)
-                .enqueue(new Callback<List<Weather>>() {
+        getData.getAllWeatherInfos(city, appID, units)
+                .enqueue(new Callback<Example>() {
                     @Override
-                    public void onResponse(Call<List<Weather>> call, Response<List<Weather>> response) {
-                        if(response.isSuccessful()){
-                            List<Weather> weatherInfos = response.body();
-                            if(weatherInfos != null) {
+                    public void onResponse(Call<Example> call, @NonNull Response<Example> response) {
+                        if (response.isSuccessful()) {
+                            Example weatherInfos = response.body();
+                            if (weatherInfos != null) {
                                 callback.onSuccess(weatherInfos);
                             } else {
                                 callback.onError();
@@ -50,7 +59,8 @@ public class WeatherRepository {
                     }
 
                     @Override
-                    public void onFailure(Call<List<Weather>> call, Throwable t) {
+                    public void onFailure(Call<Example> call, Throwable t) {
+                        Log.println(Log.ERROR, "EROARE GET", t.getMessage());
                         callback.onError();
                     }
                 });

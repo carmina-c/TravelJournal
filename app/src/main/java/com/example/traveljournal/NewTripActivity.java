@@ -23,6 +23,8 @@ public class NewTripActivity extends AppCompatActivity {
     public static final String EXTRA_REPLY1 = "com.example.android.wordlistsql.REPLY1";
     public static final String EXTRA_REPLY2 = "com.example.android.wordlistsql.REPLY2";
     public static final String EXTRA_REPLY3 = "com.example.android.wordlistsql.REPLY3";
+    public static final String EXTRA_REPLY4 = "com.example.android.wordlistsql.REPLY4";
+    public static final String EXTRA_REPLY5 = "com.example.android.wordlistsql.REPLY5";
 
     int yearStart, yearEnd, monthStart, monthEnd, dayStart, dayEnd;
     TextView textViewDateStart, textViewDateEnd;
@@ -66,6 +68,9 @@ public class NewTripActivity extends AppCompatActivity {
         mEditDestinationNameView = findViewById(R.id.editTextDestination);
         mRating = findViewById(R.id.ratingBar);
 
+        textViewDateStart = findViewById(R.id.textViewDateStart);
+        textViewDateEnd = findViewById(R.id.textViewDateEnd);
+
         buttonSave = findViewById(R.id.buttonSave);
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -80,6 +85,8 @@ public class NewTripActivity extends AppCompatActivity {
                     replyIntent.putExtra(EXTRA_REPLY1, destination);
                     replyIntent.putExtra(EXTRA_REPLY2, price);
                     replyIntent.putExtra(EXTRA_REPLY3, rating);
+                    replyIntent.putExtra(EXTRA_REPLY4, textViewDateStart.getText());
+                    replyIntent.putExtra(EXTRA_REPLY5, textViewDateEnd.getText());
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();
@@ -93,6 +100,8 @@ public class NewTripActivity extends AppCompatActivity {
             mEditDestinationNameView.setText(data.getString("Destination"));
             mTextViewPrice.setText(data.getString("Price"));
             mRating.setRating(data.getFloat("Rating"));
+            textViewDateStart.setText(data.getString("StartDate"));
+            textViewDateEnd.setText(data.getString("EndDate"));
         }
     }
 
@@ -101,7 +110,6 @@ public class NewTripActivity extends AppCompatActivity {
         yearStart = c.get(Calendar.YEAR);
         monthStart = c.get(Calendar.MONTH);
         dayStart = c.get(Calendar.DAY_OF_MONTH);
-        textViewDateStart = findViewById(R.id.textViewDateStart);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -111,7 +119,6 @@ public class NewTripActivity extends AppCompatActivity {
                                           int monthOfYear, int dayOfMonth) {
 
                         textViewDateStart.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
                     }
                 }, yearStart, monthStart, dayStart);
         datePickerDialog.show();
@@ -122,7 +129,6 @@ public class NewTripActivity extends AppCompatActivity {
         yearEnd = c.get(Calendar.YEAR);
         monthEnd = c.get(Calendar.MONTH);
         dayEnd = c.get(Calendar.DAY_OF_MONTH);
-        textViewDateEnd = findViewById(R.id.textViewDateEnd);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -132,7 +138,6 @@ public class NewTripActivity extends AppCompatActivity {
                                           int monthOfYear, int dayOfMonth) {
 
                         textViewDateEnd.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
                     }
                 }, yearEnd, monthEnd, dayEnd);
         datePickerDialog.show();

@@ -23,6 +23,8 @@ import java.util.List;
 
 public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripViewHolder> {
     class TripViewHolder extends RecyclerView.ViewHolder {
+        public static final int EDIT_TRIP_ACTIVITY_REQUEST_CODE = 2;
+
         private final TextView tripItemView;
         private final TextView destinationItemView;
         private final TextView priceItemView;
@@ -30,6 +32,9 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
         private final RatingBar ratingBar;
         private float ratingBarValue = 0;
         private int bookmarkState = 0;
+        private boolean isFavourite = false;
+        private String startDate;
+        private String endDate;
 
         private TripViewHolder(View itemView) {
             super(itemView);
@@ -58,8 +63,11 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
                     dataDetails.putString("Price", priceItemView.getText().toString());
                     ratingBarValue = ratingBar.getRating();
                     dataDetails.putFloat("Rating", ratingBarValue);
+                    dataDetails.putString("StartDate", startDate);
+                    dataDetails.putString("EndDate", endDate);
                     activity.putExtras(dataDetails);
                     context.startActivity(activity);
+                    //itemView.getContext().startActivityForResult(activity, EDIT_TRIP_ACTIVITY_REQUEST_CODE);
                     return false;
                 }
             });
@@ -73,6 +81,8 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
                     dataDetails.putString("Destination", destinationItemView.getText().toString());
                     ratingBarValue = ratingBar.getRating();
                     dataDetails.putFloat("Rating", ratingBarValue);
+                    dataDetails.putString("StartDate", startDate);
+                    dataDetails.putString("EndDate", endDate);
                     activity.putExtras(dataDetails);
                     context.startActivity(activity);
                 }
@@ -84,9 +94,11 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
                     if (bookmarkState % 2 == 0) {
                         bookmark.setBackgroundResource(R.drawable.ic_bookmark_saved);
                         bookmarkState = 1;
+                        isFavourite = true;
                     } else {
                         bookmark.setBackgroundResource(R.drawable.ic_bookmark_unsaved);
                         bookmarkState = 0;
+                        isFavourite = false;
                     }
                 }
             });
@@ -112,15 +124,20 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
             Trip current = mTrips.get(position);
             holder.tripItemView.setText(current.getTrip());
             holder.destinationItemView.setText(current.getDestination());
-            holder.priceItemView.setText(current.getPrice());
-            //holder.priceItemView.setText("500");
+            holder.priceItemView.setText(current.getPrice() + " EUR");
             holder.ratingBar.setRating(current.getRating());
+            holder.isFavourite = current.getIsFavourite();
+            holder.startDate = current.getStartDate();
+            holder.endDate = current.getEndDate();
         } else {
             // Covers the case of data not being ready yet.
             holder.tripItemView.setText(R.string.no_trip);
             holder.destinationItemView.setText(R.string.no_destination);
             holder.priceItemView.setText(R.string.no_data);
             holder.ratingBar.setRating(0);
+            holder.isFavourite = false;
+            holder.startDate = "Unknown";
+            holder.endDate = "Unknown";
         }
     }
 

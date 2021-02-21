@@ -1,4 +1,4 @@
-package com.example.traveljournal.retrofit;
+package com.example.traveljournal.retrofit.POJO;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -11,10 +11,6 @@ public class Weather {
     public String description;
     @SerializedName("icon")
     public String icon;
-    @SerializedName("temp")
-    public float temp;
-    @SerializedName("humidity")
-    public float humidity;
 
     public String getMain() {
         return main;
@@ -48,29 +44,22 @@ public class Weather {
         this.id = id;
     }
 
-    public float getTemp() {
-        return temp;
-    }
 
-    public void setTemp(float temp) {
-        this.temp = temp;
-    }
-
-    public float getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(float humidity) {
-        this.humidity = humidity;
-    }
-
-    public Weather(int id, String main, String description, String icon, float temp, float humidity) {
+    public Weather(int id, String main, String description, String icon) {
         this.id = id;
         this.main = main;
         this.description = description;
         this.icon = icon;
-        this.temp = temp;
-        this.humidity = humidity;
+    }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "id=" + id +
+                ", main='" + main + '\'' +
+                ", description='" + description + '\'' +
+                ", icon='" + icon + '\'' +
+                '}';
     }
 }
 

@@ -17,18 +17,11 @@
         android:id="@+id/openTripListActivityButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="See trips"
+        android:background="@color/orange"
+        android:text="@string/see_trips"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/openWeatherActivityButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go to weather activity -- for testing"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/openTripListActivityButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

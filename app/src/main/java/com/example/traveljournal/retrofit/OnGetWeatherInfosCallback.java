@@ -1,8 +1,9 @@
 package com.example.traveljournal.retrofit;
 
-import java.util.List;
+import com.example.traveljournal.retrofit.POJO.Example;
 
 public interface OnGetWeatherInfosCallback {
-    void onSuccess(List<Weather> weatherInfos);
+    void onSuccess(Example weatherInfos);
+
     void onError();
 }

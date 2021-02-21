@@ -22,11 +22,24 @@ public class Trip {
     @ColumnInfo(name = "tripRating")
     private final float mRating;
 
-    public Trip(@NonNull String mTrip, String mDestination, String mPrice, float mRating) {
+    @ColumnInfo(name = "tripStartDate")
+    private final String mStartDate;
+
+    @ColumnInfo(name = "tripEndDate")
+    private final String mEndDate;
+
+    @ColumnInfo(name = "isFavourite")
+    private final boolean mIsFavourite;
+
+
+    public Trip(@NonNull String mTrip, String mDestination, String mPrice, float mRating, String mStartDate, String mEndDate, boolean mIsFavourite) {
         this.mTrip = mTrip;
         this.mDestination = mDestination;
         this.mPrice = mPrice;
         this.mRating = mRating;
+        this.mStartDate = mStartDate;
+        this.mEndDate = mEndDate;
+        this.mIsFavourite = mIsFavourite;
     }
 
     public String getTrip() {
@@ -43,5 +56,17 @@ public class Trip {
 
     public float getRating() {
         return mRating;
+    }
+
+    public String getStartDate() {
+        return mStartDate;
+    }
+
+    public String getEndDate() {
+        return mEndDate;
+    }
+
+    public boolean getIsFavourite() {
+        return mIsFavourite;
     }
 }
