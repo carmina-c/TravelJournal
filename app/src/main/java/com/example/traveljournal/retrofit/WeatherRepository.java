@@ -21,7 +21,8 @@ public class WeatherRepository {
 
     final static String BASE_URL = "https://api.openweathermap.org/";
     public static String appID = "635de0ffe609758867df0c2955c0c1e3";
-    private final String city = "London,uk";
+    //private String city = "London,uk";
+    private String city;
     private final String units = "metric";
 
     private WeatherRepository(GetData data) {
@@ -42,6 +43,7 @@ public class WeatherRepository {
     }
 
     public void getWeatherInfos(final OnGetWeatherInfosCallback callback) {
+        city = WeatherActivity.city;
         getData.getAllWeatherInfos(city, appID, units)
                 .enqueue(new Callback<Example>() {
                     @Override

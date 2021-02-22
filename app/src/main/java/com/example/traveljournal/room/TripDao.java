@@ -16,6 +16,9 @@ public interface TripDao {
     @Query("DELETE FROM trip_table")
     void deleteAll();
 
+    @Query("DELETE FROM trip_table WHERE tripName = :tripN")
+    void deleteTrip(String tripN);
+
     @Query("SELECT * from trip_table ORDER BY tripName ASC")
     LiveData<List<Trip>> getAlphabetizedTrips();
 }

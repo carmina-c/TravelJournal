@@ -13,8 +13,8 @@ import com.example.traveljournal.retrofit.POJO.Example;
 public class WeatherActivity extends AppCompatActivity {
 
     private WeatherRepository weatherRepository;
-    private String city;
     private TextView cityTextView, temperatureTextView, temperatureFeelsLikeTextView, humidityTextView, pressureTexView;
+    static String city;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +42,9 @@ public class WeatherActivity extends AppCompatActivity {
         weatherRepository.getWeatherInfos(new OnGetWeatherInfosCallback() {
             @Override
             public void onSuccess(Example weatherInfo) {
-                Toast.makeText(WeatherActivity.this, weatherInfo.getMain().toString(),
-                        Toast.LENGTH_LONG).show();
-                cityTextView.setText(weatherInfo.getName());
+                /*Toast.makeText(WeatherActivity.this, weatherInfo.getMain().toString(),
+                        Toast.LENGTH_LONG).show();*/
+                cityTextView.setText("City: " + weatherInfo.getName());
                 temperatureTextView.setText("Temperature: " + String.valueOf(weatherInfo.getMain().getTemp()) + "\u2103");
                 temperatureFeelsLikeTextView.setText("Feels like: " + String.valueOf(weatherInfo.getMain().getFeelsLike()) + "\u2103");
                 humidityTextView.setText("Humidity: " + String.valueOf(weatherInfo.getMain().getHumidity()));

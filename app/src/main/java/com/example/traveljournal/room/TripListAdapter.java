@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.traveljournal.NewTripActivity;
-import com.example.traveljournal.OnSwipeTouchListener;
 import com.example.traveljournal.R;
 import com.example.traveljournal.TripDetailsActivity;
 
@@ -44,13 +44,6 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
             priceItemView = itemView.findViewById(R.id.textViewPrice);
             ratingBar = itemView.findViewById(R.id.ratingBar);
             bookmark = itemView.findViewById(R.id.buttonBookmark);
-
-            /*itemView.setOnTouchListener(new OnSwipeTouchListener(context) {
-                public void onSwipeLeft() {
-                    Toast.makeText(context, "left", Toast.LENGTH_SHORT).show();
-                    //TODO: Implement delete from database onSwipeLeft
-                }
-            });*/
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -102,6 +95,7 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
                     }
                 }
             });
+
         }
     }
 

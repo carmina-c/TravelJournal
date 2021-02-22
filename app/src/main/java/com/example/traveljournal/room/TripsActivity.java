@@ -1,11 +1,14 @@
 package com.example.traveljournal.room;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Dao;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,6 +54,28 @@ public class TripsActivity extends AppCompatActivity {
                 startActivityForResult(intent, NEW_TRIP_ACTIVITY_REQUEST_CODE);
             }
         });
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                mTripViewModel.getAllTrips().getValue().remove(position);
+                adapter.notifyDataSetChanged();
+                /*try {
+                    //TODO: Stegerea din baza de date
+                }catch (Exception exception) {
+
+                };*/
+            }
+        };
+
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
