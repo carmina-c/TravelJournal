@@ -2,6 +2,7 @@ package com.example.traveljournal.room;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -16,8 +17,11 @@ public interface TripDao {
     @Query("DELETE FROM trip_table")
     void deleteAll();
 
-    @Query("DELETE FROM trip_table WHERE tripName = :tripN")
-    void deleteTrip(String tripN);
+    /*@Query("DELETE FROM trip_table WHERE tripName = :tripN")
+    void deleteTrip(String tripN);*/
+
+    @Delete
+    void deleteTrip(Trip trip);
 
     @Query("SELECT * from trip_table ORDER BY tripName ASC")
     LiveData<List<Trip>> getAlphabetizedTrips();

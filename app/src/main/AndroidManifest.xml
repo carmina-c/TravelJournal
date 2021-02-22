@@ -11,31 +11,30 @@
         android:roundIcon="@drawable/ic_baseline_travel_explore_24"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelJournal">
-        <activity android:name=".retrofit.WeatherActivity"></activity>
-        <activity android:name=".room.TripsActivity" />
+        <activity
+            android:name=".retrofit.WeatherActivity"
+            android:parentActivityName=".TripDetailsActivity">
+        </activity>
+        <activity
+            android:name=".room.TripsActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".TripDetailsActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".room.TripsActivity" />
         <activity
             android:name=".NewTripActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".room.TripsActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.TravelJournal.NoActionBar">
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
         </activity>
     </application>
 </manifest>

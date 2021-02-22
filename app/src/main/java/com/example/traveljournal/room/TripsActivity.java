@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Dao;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.traveljournal.MainActivity;
 import com.example.traveljournal.NewTripActivity;
 import com.example.traveljournal.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,6 +34,9 @@ public class TripsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trips);
+
+        getSupportActionBar().setTitle("Trips");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewTrips);
         final TripListAdapter adapter = new TripListAdapter(this);
@@ -63,19 +69,34 @@ public class TripsActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int position = viewHolder.getAdapterPosition();
-                mTripViewModel.getAllTrips().getValue().remove(position);
-                adapter.notifyDataSetChanged();
-                /*try {
-                    //TODO: Stegerea din baza de date
-                }catch (Exception exception) {
+                new AlertDialog.Builder(TripsActivity.this)
+                        .setTitle("Confirmation")
+                        .setMessage("Do you really want to delete this trip?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
-                };*/
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                Toast.makeText(TripsActivity.this, "The trip was deleted", Toast.LENGTH_SHORT).show();
+                                int position = viewHolder.getAdapterPosition();
+                                Trip trip = mTripViewModel.getAllTrips().getValue().get(position);
+                                mTripViewModel.getAllTrips().getValue().remove(position);
+                                adapter.notifyDataSetChanged();
+                                try {
+                                    mTripViewModel.deleteTrip(trip);
+                                }catch (Exception exception) {
+
+                                };
+                            }})
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                adapter.notifyDataSetChanged();
+                            }
+                        }).show();
             }
         };
 
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
-
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

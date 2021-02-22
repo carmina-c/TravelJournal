@@ -153,6 +153,6 @@ public class NewTripActivity extends AppCompatActivity {
     }
 
     public void changeBackgroundToMountain(View view) {
-        scrollViewAddTrip.setBackgroundResource(R.drawable.mountain_3);
+        scrollViewAddTrip.setBackgroundResource(R.drawable.background_4);
     }
 }

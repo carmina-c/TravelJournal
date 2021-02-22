@@ -21,6 +21,9 @@ public class WeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
+        getSupportActionBar().setTitle("Weather");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         cityTextView = findViewById(R.id.txt_city);
         temperatureTextView = findViewById(R.id.txt_temperature);
         temperatureFeelsLikeTextView = findViewById(R.id.txt_temperature_feels_like);

@@ -95,7 +95,6 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
                     }
                 }
             });
-
         }
     }
 
