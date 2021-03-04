@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<item android:maxLevel="0" android:drawable="@drawable/ic_heart_empty" />
+    <item android:maxLevel="1" android:drawable="@drawable/ic_heart_full" />-->
+    <item android:maxLevel="0" android:drawable="@drawable/ic_heart_empty_1" />
+    <item android:maxLevel="1" android:drawable="@drawable/ic_heart_full_1" />
+</level-list>

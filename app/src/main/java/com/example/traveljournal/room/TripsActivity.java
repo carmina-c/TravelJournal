@@ -1,5 +1,12 @@
 package com.example.traveljournal.room;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,16 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Dao;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-
-import com.example.traveljournal.MainActivity;
 import com.example.traveljournal.NewTripActivity;
 import com.example.traveljournal.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,6 +25,7 @@ import java.util.List;
 public class TripsActivity extends AppCompatActivity {
 
     public static final int NEW_TRIP_ACTIVITY_REQUEST_CODE = 1;
+    public static final int EDIT_TRIP_ACTIVITY_REQUEST_CODE = 2;
 
     private TripViewModel mTripViewModel;
 
@@ -83,10 +82,11 @@ public class TripsActivity extends AppCompatActivity {
                                 adapter.notifyDataSetChanged();
                                 try {
                                     mTripViewModel.deleteTrip(trip);
-                                }catch (Exception exception) {
+                                } catch (Exception exception) {
 
-                                };
-                            }})
+                                }
+                            }
+                        })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -102,20 +102,28 @@ public class TripsActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == NEW_TRIP_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             String tripName = data.getStringExtra(NewTripActivity.EXTRA_REPLY);
             String destination = data.getStringExtra(NewTripActivity.EXTRA_REPLY1);
             String price = data.getStringExtra(NewTripActivity.EXTRA_REPLY2);
             float rating = data.getFloatExtra(NewTripActivity.EXTRA_REPLY3, 0);
             String mStartDate = data.getStringExtra(NewTripActivity.EXTRA_REPLY4);
             String mEndDate = data.getStringExtra(NewTripActivity.EXTRA_REPLY5);
-            Trip trip = new Trip(tripName, destination, price, rating, mStartDate, mEndDate, false);
-            mTripViewModel.insert(trip);
-        } else {
+            boolean isFav = data.getBooleanExtra(NewTripActivity.EXTRA_REPLY6, false);
+            if (requestCode == NEW_TRIP_ACTIVITY_REQUEST_CODE) {
+                Trip trip = new Trip(tripName, destination, price, rating, mStartDate, mEndDate, isFav);
+                mTripViewModel.insert(trip);
+            } else if(requestCode == EDIT_TRIP_ACTIVITY_REQUEST_CODE) {
+                int id = data.getIntExtra(NewTripActivity.EXTRA_REPLY_ID, 5);
+                mTripViewModel.updateTripForEdit(id, tripName, destination, price, rating, mStartDate, mEndDate, isFav);
+            }
+        } else if (requestCode == NEW_TRIP_ACTIVITY_REQUEST_CODE && resultCode != RESULT_OK) {
             Toast.makeText(
                     getApplicationContext(),
                     R.string.empty_not_saved,
                     Toast.LENGTH_LONG).show();
         }
+
+
     }
 }

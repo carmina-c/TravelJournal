@@ -47,7 +47,6 @@
             android:layout_marginTop="@dimen/big_margin"
             android:layout_marginEnd="@dimen/small_margin"
             android:background="@color/dark_blue"
-            android:onClick="saveDataOnClick"
             android:text="@string/save"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +61,7 @@
             android:background="#98ffffff"
             android:ems="10"
             android:hint="@string/destination"
-            android:inputType="textPersonName"
+            android:inputType="textCapSentences"
             android:textColor="@color/black"
             android:textColorHint="@color/grey"
             android:textSize="@dimen/medium_font"
@@ -79,13 +78,27 @@
             android:background="#98ffffff"
             android:ems="10"
             android:hint="@string/trip_name"
-            android:inputType="textPersonName"
+            android:inputType="textCapSentences"
             android:textColor="@color/black"
             android:textColorHint="@color/grey"
             android:textSize="@dimen/title_font"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/bookmarkButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:adjustViewBounds="true"
+            android:background="#98ffffff"
+            android:cropToPadding="true"
+            android:scaleType="centerInside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bookmark" />
 
         <RadioGroup
             android:id="@+id/radioGroup"

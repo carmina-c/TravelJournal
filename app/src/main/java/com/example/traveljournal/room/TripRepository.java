@@ -34,5 +34,17 @@ public class TripRepository {
             mTripDao.deleteTrip(trip);
         });
     }
+
+    void updateTrip(Trip trip){
+        TripRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mTripDao.updateTrip(trip);
+        });
+    }
+
+    void updateTripForEdit(int mID, String mTrip, String mDestination, String mPrice, float mRating,  String mStartDate, String mEndDate, boolean mIsFavourite){
+        TripRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mTripDao.updateForEdit(mID, mTrip, mDestination, mPrice, mRating, mStartDate, mEndDate, mIsFavourite);
+        });
+    }
 }
 

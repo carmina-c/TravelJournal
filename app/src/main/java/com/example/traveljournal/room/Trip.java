@@ -8,28 +8,34 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "trip_table")
 public class Trip {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
+    @ColumnInfo(name = "tripID")
+    private int mID;
+
     @ColumnInfo(name = "tripName")
-    private final String mTrip;
+    private String mTrip;
 
     @ColumnInfo(name = "tripDestination")
-    private final String mDestination;
+    private String mDestination;
 
     @ColumnInfo(name = "tripPrice")
-    private final String mPrice;
+    private String mPrice;
 
     @ColumnInfo(name = "tripRating")
-    private final float mRating;
+    private float mRating;
 
     @ColumnInfo(name = "tripStartDate")
-    private final String mStartDate;
+    private String mStartDate;
 
     @ColumnInfo(name = "tripEndDate")
-    private final String mEndDate;
+    private String mEndDate;
 
     @ColumnInfo(name = "isFavourite")
-    private final boolean mIsFavourite;
+    private boolean mIsFavourite;
+
+    @ColumnInfo(name = "tripImagePath")
+    private String mPath;
 
 
     public Trip(@NonNull String mTrip, String mDestination, String mPrice, float mRating, String mStartDate, String mEndDate, boolean mIsFavourite) {
@@ -41,6 +47,8 @@ public class Trip {
         this.mEndDate = mEndDate;
         this.mIsFavourite = mIsFavourite;
     }
+
+    public int getID() {return this.mID;}
 
     public String getTrip() {
         return this.mTrip;
@@ -69,4 +77,14 @@ public class Trip {
     public boolean getIsFavourite() {
         return mIsFavourite;
     }
+
+    public String getPath(){return mPath;}
+
+    public void setIsFavourite(boolean value){
+        mIsFavourite = value;
+    }
+
+    public void setID(int id){mID = id;}
+
+    public void setPath(String path){mPath = path;}
 }

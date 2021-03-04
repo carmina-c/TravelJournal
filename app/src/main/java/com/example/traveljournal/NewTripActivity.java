@@ -8,14 +8,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
+
+import com.example.traveljournal.room.Trip;
+import com.example.traveljournal.room.TripListAdapter;
+import com.example.traveljournal.room.TripViewModel;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class NewTripActivity extends AppCompatActivity {
 
@@ -25,6 +38,8 @@ public class NewTripActivity extends AppCompatActivity {
     public static final String EXTRA_REPLY3 = "com.example.android.wordlistsql.REPLY3";
     public static final String EXTRA_REPLY4 = "com.example.android.wordlistsql.REPLY4";
     public static final String EXTRA_REPLY5 = "com.example.android.wordlistsql.REPLY5";
+    public static final String EXTRA_REPLY6 = "com.example.android.wordlistsql.REPLY6";
+    public static final String EXTRA_REPLY_ID = "com.example.android.wordlistsql.REPLY_ID";
 
     int yearStart, yearEnd, monthStart, monthEnd, dayStart, dayEnd;
     TextView textViewDateStart, textViewDateEnd;
@@ -32,11 +47,16 @@ public class NewTripActivity extends AppCompatActivity {
     private String price;
     ScrollView scrollViewAddTrip;
     Button buttonSave;
+    ImageButton bookmarkButton;
+    public boolean levelBookmark = false;
 
     private EditText mEditTripNameView;
     private EditText mEditDestinationNameView;
     private TextView mTextViewPrice;
     private RatingBar mRating;
+
+    private TripViewModel mTripViewModel;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +65,15 @@ public class NewTripActivity extends AppCompatActivity {
 
         seekBarPrice = (SeekBar) findViewById(R.id.seekBarPrice);
         mTextViewPrice = findViewById(R.id.textViewPriceValue);
+        scrollViewAddTrip = findViewById(R.id.scrollViewAddTrip);
+        mEditTripNameView = findViewById(R.id.editTextTripName);
+        mEditDestinationNameView = findViewById(R.id.editTextDestination);
+        mRating = findViewById(R.id.ratingBar);
+        textViewDateStart = findViewById(R.id.textViewDateStart);
+        textViewDateEnd = findViewById(R.id.textViewDateEnd);
+        bookmarkButton = findViewById(R.id.bookmarkButton);
+        buttonSave = findViewById(R.id.buttonSave);
+
         seekBarPrice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -63,17 +92,16 @@ public class NewTripActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Add/Edit Trip");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        scrollViewAddTrip = findViewById(R.id.scrollViewAddTrip);
-        mEditTripNameView = findViewById(R.id.editTextTripName);
-        mEditDestinationNameView = findViewById(R.id.editTextDestination);
-        mRating = findViewById(R.id.ratingBar);
+        bookmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setBookmarkImage();
+            }
+        });
 
-        textViewDateStart = findViewById(R.id.textViewDateStart);
-        textViewDateEnd = findViewById(R.id.textViewDateEnd);
-
-        buttonSave = findViewById(R.id.buttonSave);
         buttonSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+
                 Intent replyIntent = new Intent();
                 if (TextUtils.isEmpty(mEditTripNameView.getText())) {
                     setResult(RESULT_CANCELED, replyIntent);
@@ -87,6 +115,8 @@ public class NewTripActivity extends AppCompatActivity {
                     replyIntent.putExtra(EXTRA_REPLY3, rating);
                     replyIntent.putExtra(EXTRA_REPLY4, textViewDateStart.getText());
                     replyIntent.putExtra(EXTRA_REPLY5, textViewDateEnd.getText());
+                    replyIntent.putExtra(EXTRA_REPLY6, levelBookmark);
+                    replyIntent.putExtra(EXTRA_REPLY_ID, id);
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();
@@ -99,9 +129,39 @@ public class NewTripActivity extends AppCompatActivity {
             mEditTripNameView.setText(data.getString("TripName"));
             mEditDestinationNameView.setText(data.getString("Destination"));
             mTextViewPrice.setText(data.getString("Price"));
+            try {
+                seekBarPrice.setProgress(Integer.parseInt(data.getString("Price").replaceAll("[\\D]", "")));
+            } catch (NumberFormatException error) {
+                System.out.println("Eroare format: " + error);
+            } catch (Exception exception) {
+                System.out.println("Exceptie: " + exception);
+            }
             mRating.setRating(data.getFloat("Rating"));
             textViewDateStart.setText(data.getString("StartDate"));
             textViewDateEnd.setText(data.getString("EndDate"));
+            levelBookmark = data.getBoolean("Bookmark");
+            id = data.getInt("ID");
+
+            if (levelBookmark == false) {
+                bookmarkButton.setImageLevel(0);
+                levelBookmark = true;
+            } else {
+                bookmarkButton.setImageLevel(1);
+                levelBookmark = false;
+            }
+            /*Trip trip = new Trip(data.getString("TripName"), data.getString("Destination"), data.getString("Price"),
+                    data.getFloat("Rating"), data.getString("StartDate"), data.getString("EndDate"), data.getBoolean("Bookmark"));
+            mTripViewModel.updateTrip(trip);*/
+        }
+    }
+
+    private void setBookmarkImage() {
+        if (levelBookmark == false) {
+            bookmarkButton.setImageLevel(1);
+            levelBookmark = true;
+        } else {
+            bookmarkButton.setImageLevel(0);
+            levelBookmark = false;
         }
     }
 
@@ -142,7 +202,6 @@ public class NewTripActivity extends AppCompatActivity {
                 }, yearEnd, monthEnd, dayEnd);
         datePickerDialog.show();
     }
-
 
     public void changeBackgroundToCityBreak(View view) {
         scrollViewAddTrip.setBackgroundResource(R.drawable.citybreak_1);
