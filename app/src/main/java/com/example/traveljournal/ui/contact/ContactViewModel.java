@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 public class ContactViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private final MutableLiveData<String> mText;
 
     public ContactViewModel() {
         mText = new MutableLiveData<>();

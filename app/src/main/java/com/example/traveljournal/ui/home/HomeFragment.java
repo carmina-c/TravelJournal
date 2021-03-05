@@ -9,17 +9,12 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.traveljournal.MainActivity;
 import com.example.traveljournal.R;
-import com.example.traveljournal.retrofit.WeatherActivity;
 import com.example.traveljournal.room.Trip;
-import com.example.traveljournal.room.TripListAdapter;
 import com.example.traveljournal.room.TripsActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -34,7 +29,6 @@ public class HomeFragment extends Fragment {
 
         recyclerViewTrips = root.findViewById(R.id.recyclerViewTrips);
         openTripsActivityButton = root.findViewById(R.id.openTripListActivityButton);
-        openWeatherActivityButton = root.findViewById(R.id.openWeatherActivityButton);
 
         openTripsActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override

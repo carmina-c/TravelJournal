@@ -14,22 +14,22 @@ public class Trip {
     private int mID;
 
     @ColumnInfo(name = "tripName")
-    private String mTrip;
+    private final String mTrip;
 
     @ColumnInfo(name = "tripDestination")
-    private String mDestination;
+    private final String mDestination;
 
     @ColumnInfo(name = "tripPrice")
-    private String mPrice;
+    private final String mPrice;
 
     @ColumnInfo(name = "tripRating")
-    private float mRating;
+    private final float mRating;
 
     @ColumnInfo(name = "tripStartDate")
-    private String mStartDate;
+    private final String mStartDate;
 
     @ColumnInfo(name = "tripEndDate")
-    private String mEndDate;
+    private final String mEndDate;
 
     @ColumnInfo(name = "isFavourite")
     private boolean mIsFavourite;
@@ -48,7 +48,9 @@ public class Trip {
         this.mIsFavourite = mIsFavourite;
     }
 
-    public int getID() {return this.mID;}
+    public int getID() {
+        return this.mID;
+    }
 
     public String getTrip() {
         return this.mTrip;
@@ -78,13 +80,19 @@ public class Trip {
         return mIsFavourite;
     }
 
-    public String getPath(){return mPath;}
+    public String getPath() {
+        return mPath;
+    }
 
-    public void setIsFavourite(boolean value){
+    public void setIsFavourite(boolean value) {
         mIsFavourite = value;
     }
 
-    public void setID(int id){mID = id;}
+    public void setID(int id) {
+        mID = id;
+    }
 
-    public void setPath(String path){mPath = path;}
+    public void setPath(String path) {
+        mPath = path;
+    }
 }

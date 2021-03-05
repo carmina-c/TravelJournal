@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,7 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
     class TripViewHolder extends RecyclerView.ViewHolder {
         public static final int EDIT_TRIP_ACTIVITY_REQUEST_CODE = 2;
 
-        private ConstraintLayout root;
+        private final ConstraintLayout root;
         protected CardView cardViewTripItem;
         private final TextView tripItemView;
         private final TextView destinationItemView;
@@ -70,7 +69,7 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
                     dataDetails.putInt("ID", id);
                     activity.putExtras(dataDetails);
                     //context.startActivity(activity);
-                    ((Activity)context).startActivityForResult(activity, EDIT_TRIP_ACTIVITY_REQUEST_CODE);
+                    ((Activity) context).startActivityForResult(activity, EDIT_TRIP_ACTIVITY_REQUEST_CODE);
                     return false;
                 }
             });

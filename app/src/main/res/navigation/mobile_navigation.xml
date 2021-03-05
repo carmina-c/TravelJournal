@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/nav_favorites"
+        android:name="com.example.traveljournal.ui.favorites.FavoritesFragment"
+        android:label="@string/favorites"
+        tools:layout="@layout/fragment_favorites" />
+
+    <fragment
         android:id="@+id/nav_aboutus"
         android:name="com.example.traveljournal.ui.aboutus.AboutUsFragment"
         android:label="@string/menu_aboutus"

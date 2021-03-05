@@ -14,21 +14,11 @@ import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Database;
-import androidx.room.RoomDatabase;
 
-import com.example.traveljournal.room.Trip;
-import com.example.traveljournal.room.TripListAdapter;
 import com.example.traveljournal.room.TripViewModel;
 
 import java.util.Calendar;
-import java.util.List;
 
 public class NewTripActivity extends AppCompatActivity {
 
@@ -80,10 +70,12 @@ public class NewTripActivity extends AppCompatActivity {
                 mTextViewPrice.setText(progress + " EUR");
                 price = String.valueOf(progress);
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //write custom code to on start progress
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
@@ -125,7 +117,7 @@ public class NewTripActivity extends AppCompatActivity {
 
         Intent intentReceived = getIntent();
         Bundle data = intentReceived.getExtras();
-        if(data != null) {
+        if (data != null) {
             mEditTripNameView.setText(data.getString("TripName"));
             mEditDestinationNameView.setText(data.getString("Destination"));
             mTextViewPrice.setText(data.getString("Price"));
@@ -177,7 +169,9 @@ public class NewTripActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-
+                        yearStart = year;
+                        monthStart = monthOfYear;
+                        dayStart = dayOfMonth;
                         textViewDateStart.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                     }
                 }, yearStart, monthStart, dayStart);
@@ -190,6 +184,9 @@ public class NewTripActivity extends AppCompatActivity {
         monthEnd = c.get(Calendar.MONTH);
         dayEnd = c.get(Calendar.DAY_OF_MONTH);
 
+        Calendar minDate = Calendar.getInstance();
+        minDate.set(yearStart, monthStart, dayStart);
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
 
@@ -199,7 +196,9 @@ public class NewTripActivity extends AppCompatActivity {
 
                         textViewDateEnd.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                     }
-                }, yearEnd, monthEnd, dayEnd);
+                }, yearStart, monthStart, dayStart);
+
+        datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
         datePickerDialog.show();
     }
 

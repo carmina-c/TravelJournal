@@ -113,7 +113,7 @@ public class TripsActivity extends AppCompatActivity {
             if (requestCode == NEW_TRIP_ACTIVITY_REQUEST_CODE) {
                 Trip trip = new Trip(tripName, destination, price, rating, mStartDate, mEndDate, isFav);
                 mTripViewModel.insert(trip);
-            } else if(requestCode == EDIT_TRIP_ACTIVITY_REQUEST_CODE) {
+            } else if (requestCode == EDIT_TRIP_ACTIVITY_REQUEST_CODE) {
                 int id = data.getIntExtra(NewTripActivity.EXTRA_REPLY_ID, 5);
                 mTripViewModel.updateTripForEdit(id, tripName, destination, price, rating, mStartDate, mEndDate, isFav);
             }

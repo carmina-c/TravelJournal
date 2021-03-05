@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.traveljournal.retrofit.WeatherActivity;
-import com.example.traveljournal.room.Trip;
 
 public class TripDetailsActivity extends AppCompatActivity {
 
@@ -36,7 +34,7 @@ public class TripDetailsActivity extends AppCompatActivity {
 
         Intent intentReceived = getIntent();
         Bundle data = intentReceived.getExtras();
-        if(data != null) {
+        if (data != null) {
             tripNameDetails.setText(data.getString("TripName"));
             destinationDetails.setText(data.getString("Destination"));
             ratingBarDetails.setRating(data.getFloat("Rating"));

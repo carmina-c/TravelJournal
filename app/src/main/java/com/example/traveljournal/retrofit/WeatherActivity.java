@@ -48,10 +48,10 @@ public class WeatherActivity extends AppCompatActivity {
                 /*Toast.makeText(WeatherActivity.this, weatherInfo.getMain().toString(),
                         Toast.LENGTH_LONG).show();*/
                 cityTextView.setText("City: " + weatherInfo.getName());
-                temperatureTextView.setText("Temperature: " + String.valueOf(weatherInfo.getMain().getTemp()) + "\u2103");
-                temperatureFeelsLikeTextView.setText("Feels like: " + String.valueOf(weatherInfo.getMain().getFeelsLike()) + "\u2103");
-                humidityTextView.setText("Humidity: " + String.valueOf(weatherInfo.getMain().getHumidity()));
-                pressureTexView.setText("Pressure: " + String.valueOf(weatherInfo.getMain().getPressure()));
+                temperatureTextView.setText("Temperature: " + weatherInfo.getMain().getTemp() + "\u2103");
+                temperatureFeelsLikeTextView.setText("Feels like: " + weatherInfo.getMain().getFeelsLike() + "\u2103");
+                humidityTextView.setText("Humidity: " + weatherInfo.getMain().getHumidity());
+                pressureTexView.setText("Pressure: " + weatherInfo.getMain().getPressure());
 
             }
 

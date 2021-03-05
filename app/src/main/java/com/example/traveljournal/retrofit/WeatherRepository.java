@@ -1,12 +1,10 @@
 package com.example.traveljournal.retrofit;
 
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.example.traveljournal.retrofit.POJO.Example;
-import com.example.traveljournal.retrofit.POJO.Weather;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,7 +19,6 @@ public class WeatherRepository {
 
     final static String BASE_URL = "https://api.openweathermap.org/";
     public static String appID = "635de0ffe609758867df0c2955c0c1e3";
-    //private String city = "London,uk";
     private String city;
     private final String units = "metric";
 

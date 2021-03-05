@@ -33,8 +33,11 @@ public interface TripDao {
             "tripEndDate = :mEndDate, " +
             "isFavourite = :mIsFavourite " +
             "WHERE tripID = :mID")
-    int updateForEdit(int mID, String mTrip, String mDestination, String mPrice, float mRating,  String mStartDate, String mEndDate, boolean mIsFavourite);
+    int updateForEdit(int mID, String mTrip, String mDestination, String mPrice, float mRating, String mStartDate, String mEndDate, boolean mIsFavourite);
 
     @Query("SELECT * from trip_table ORDER BY tripName ASC")
     LiveData<List<Trip>> getAlphabetizedTrips();
+
+    @Query("SELECT * FROM trip_table WHERE isFavourite = 1")
+    LiveData<List<Trip>> getFavoriteTrips();
 }
